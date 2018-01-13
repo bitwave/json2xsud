@@ -27,33 +27,21 @@ def json2xml(jsn):
     date = datetime.strptime(jsn["Datum"], '%d.%m.%Y').isoformat()
     today = dat.today().isoformat()
 
-    xml += '<Global><!--Erstellungsdatum der Exportdatei--><Datum Einheit="Qt::ISODate">'
-    xml += date
-    xml += '</Datum></Global>'
+    xml += '<Global><!--Erstellungsdatum der Exportdatei--><Datum Einheit="Qt::ISODate">%s</Datum></Global>' % date
 
     xml += '<Version><!--Versionsstand der Datenbank--><Datenbank>22</Datenbank><!--Versionsstand der Exportdatei--><xsud>9</xsud><!--Versionsstand kleiner-brauhelfer--><kleiner-brauhelfer>1.4.3.2</kleiner-brauhelfer></Version>'
 
     xml += '<Sud>'
 
-    xml += '<!--Bezeichner fuer den Sud--><Sudname>'
-    xml += jsn['Name']
-    xml += '</Sudname>'
+    xml += '<!--Bezeichner fuer den Sud--><Sudname>%s</Sudname>' % jsn['Name']
 
-    xml += '<!--Zeitstempel fuer Erstellungsdatum in der Datenbank--><Erstellt Einheit="Qt::ISODate">'
-    xml += date
-    xml += '</Erstellt>'
+    xml += '<!--Zeitstempel fuer Erstellungsdatum in der Datenbank--><Erstellt Einheit="Qt::ISODate">%s</Erstellt>' % date
 
-    xml += '<!--Zeitstempel wann Sud das letzte-mal in der Datenbank gespeichert wurde--><Gespeichert Einheit="Qt::ISODate">'
-    xml += date
-    xml += '</Gespeichert>'
+    xml += '<!--Zeitstempel wann Sud das letzte-mal in der Datenbank gespeichert wurde--><Gespeichert Einheit="Qt::ISODate">%s</Gespeichert>' % date
 
-    xml += '<!--Soll Wuerze-Anstellmenge--><Menge Einheit="Liter">'
-    xml += str(jsn['Ausschlagswuerze'])
-    xml += '</Menge>'
+    xml += '<!--Soll Wuerze-Anstellmenge--><Menge Einheit="Liter">%s</Menge>' % str(jsn['Ausschlagswuerze'])
 
-    xml += '<!--Soll Stammwuerze--><SW Einheit="Grad Plato">'
-    xml += str(jsn['Stammwuerze'])
-    xml += '</SW>'
+    xml += '<!--Soll Stammwuerze--><SW Einheit="Grad Plato">%s</SW>' % str(jsn['Stammwuerze'])
 
     xml += '<!--Soll CO2 Gehalt--><CO2 Einheit="Gramm/Liter">'
     xml += str(jsn['Karbonisierung'])
